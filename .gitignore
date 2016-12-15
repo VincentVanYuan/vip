@@ -1,5 +1,5 @@
 # IDEA ------
-ant.iml
+*.iml
 target/*
 .idea/*
 # -----
