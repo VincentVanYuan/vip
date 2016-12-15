@@ -1,0 +1,5 @@
+# IDEA ------
+ant.iml
+target/*
+.idea/*
+# -----
