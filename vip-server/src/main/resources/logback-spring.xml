@@ -2,7 +2,7 @@
 
     <jmxConfigurator/>
 
-    <property name="logDir" value="/Users/Vincent/Documents/Logs/home/log/fy-property-server" />
+    <property name="logDir" value="/Users/Vincent/Documents/Logs/home/log/vip-server" />
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <!-- encoder 默认配置为PatternLayoutEncoder -->
@@ -62,7 +62,6 @@
 
     <logger name="com.lianjia.sh.xmemcached" level="WARN"/>
     <logger name="com.lianjia.sh.code.yanf4j" level="WARN"/>
-    <logger name="com.lianjia.sh.fy.autoconfigure.memcache.QueryMemcacheServers" level="WARN"/>
     <logger name="org.springframework" level="WARN"/>
     <logger name="org.apache" level="WARN"/>
     <logger name="com.netflix" level="WARN"/>
