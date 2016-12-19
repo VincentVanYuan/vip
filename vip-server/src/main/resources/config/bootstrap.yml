@@ -1,0 +1,72 @@
+spring:
+  cloud:
+    config:
+      uri: http://config.se.dooioo.net
+
+env: ${spring.profiles.active}
+
+# http://10.22.16.30 转发为 ttp://10.22.16.30:8888 ttp://10.22.16.30:9999
+
+management:
+  context-path: /admin
+  port: ${server.port}
+
+##服务发现配置
+eureka:
+  instance:
+    preferIpAddress: true
+    statusPageUrlPath: ${management.context-path}/info
+    healthCheckUrlPath: ${management.context-path}/health
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+  client:
+      serviceUrl:
+        defaultZone: http://discovery.se.dooioo.net/eureka/
+
+ribbon:
+  eureka:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 160000
+### 禁用断路器
+feign:
+  hystrix:
+    enabled: false
+
+---
+spring:
+  profiles: test
+  cloud:
+    config:
+      uri: http://config.se.dooioo.net
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery.se.dooioo.net/eureka/
+
+---
+spring:
+  profiles: integration
+  cloud:
+    config:
+      uri: http://config.se.dooioo.org
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery1.se.dooioo.org/eureka/,http://discovery2.se.dooioo.org/eureka/
+
+---
+spring:
+  profiles: production
+  cloud:
+    config:
+      uri: http://config.se.dooioo.com
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery1.se.dooioo.com/eureka/,http://discovery2.se.dooioo.com/eureka/
